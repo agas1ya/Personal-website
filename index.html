@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .profile-picture {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #3498db;
+            margin-right: 2rem;
+        }
+
+        .profile-info h1 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .profile-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .achievement-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .school-section h2, .sport-section h2, .skills-section h2 {
+            font-size: 1.5rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+
+        .school-section h3, .sport-section h3, .skills-section h3 {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .term-section {
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 3px solid #3498db;
+        }
+
+        .term-section h4 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .term-section p {
+            color: #666;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .achievement-item {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .achievement-item h4 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .trophies-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .trophies-section img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .age-group {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .age-group h3 {
+            color: #3498db;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .age-group ul {
+            list-style-position: inside;
+        }
+
+        .age-group li {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+
+        /* Media queries for responsive design */
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-picture {
+                margin-right: 0;
+                margin-bottom: 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Tab system for active page */
+        .hidden {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .nav-links a.active-link {
+            color: #3498db;
+        }
+
+        .nav-links a.active-link::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Agastya Dubey</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active-link" data-page="home">Home</a></li>
+                <li><a href="#school" class="nav-link" data-page="school">School Achievements</a></li>
+                <li><a href="#sports" class="nav-link" data-page="sports">Sport Achievements</a></li>
+                <li><a href="#skills" class="nav-link" data-page="skills">Skills & Projects</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <div class="container">
+                <section class="profile-section">
+                    <img src="Images/Agastya Dubey.jpg" alt="Profile Picture" class="profile-picture">
+                    <div class="profile-info">
+                        <h1>Welcome to My Personal Website</h1>
+                        <p>Hello! I'm a student at Cherrybrook Technology High School with a passion for sports, particularly soccer, and technology. I've achieved numerous sporting accolades and am developing my skills in programming and app development.</p>
+                        <p>On this website, you can explore my academic journey, sporting achievements, and personal projects including my breathing app, Breathe Sync.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- School Achievements Page -->
+        <div id="school-page" class="page hidden">
+            <div class="container">
+                <h1 class="section-title">School Achievements</h1>
+                
+                <div class="achievement-card school-section">
+                    <h2>Cherrybrook Technology High School</h2>
+                    
+                    <h3>Year 9</h3>
+                    <div class="term-section">
+                        <h4>Term 1</h4>
+                        <p>Soccer Boys Junior (Summer) Participant</p>
+                    </div>
+                    
+                    <div class="term-section">
+                        <h4>Term 2</h4>
+                        <p>Soccer Boys Junior (Fall)</p>
+                    </div>
+                    
+                    <div class="term-section">
+                        <h4>Term 3</h4>
+                        <p>Soccer Boys Junior (Winter) and Bill Turner Cup U15 Team Participant</p>
+                    </div>
+                    
+                    <div class="term-section">
+                        <h4>Term 4</h4>
+                        <p>Futsal Boys Junior and Soccer Knockout U15 Participant</p>
+                    </div>
+                    
+                    <div class="term-section">
+                        <h4>Achievements</h4>
+                        <div class="achievements-grid">
+                            <div class="achievement-item">
+                                <h4>Grade Sport Premiers</h4>
+                                <img src="Images/School Achievements/School Award Futsal 2024.jpg" alt="Grade Sport Premiers Award">
+                            </div>
+                            <div class="achievement-item">
+                                <h4>Maths Challenge Distinction</h4>
+                                <img src="Images/School Achievements/Math High Distinction 2024.jpg" alt="Maths Challenge Distinction Award">
+                            </div>
+                            <div class="achievement-item">
+                                <h4>Cherrybrook Best and Fairest Medallion</h4>
+                                <img src="/Images/School Achievements/Best and Fairest 2024 school award.jpg" alt="Cherrybrook Best and Fairest Medallion">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>Year 10</h3>
+                    <div class="term-section">
+                        <h4>Term 1</h4>
+                        <p>Soccer Opens 16-18 Participant</p>
+                    </div>
+                    
+                    <div class="term-section">
+                        <h4>Term 2</h4>
+                        <p>TBA</p>
+                    </div>
+                    
+                    <div class="term-section">
+                        <h4>Term 3</h4>
+                        <p>TBA</p>
+                    </div>
+                    
+                    <div class="term-section">
+                        <h4>Term 4</h4>
+                        <p>TBA</p>
+                    </div>
+                    
+                    <div class="term-section">
+                        <h4>Achievements</h4>
+                        <p>TBA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sport Achievements Page -->
+        <div id="sports-page" class="page hidden">
+            <div class="container">
+                <h1 class="section-title">Sport Achievements</h1>
+                
+                <div class="trophies-section">
+                    <h2>Trophies & Awards</h2>
+                    <img src="Images/Sport Achievements/Sporting Awards.jpeg" alt="Trophies Collection">
+                </div>
+                
+                <div class="age-group">
+                    <h3>U16</h3>
+                    <ul>
+                        <li>Division 1 Premiers</li>
+                        <li>Division 1 District Champions</li>
+                        <li>Player's Player</li>
+                    </ul>
+                </div>
+                
+                <div class="age-group">
+                    <h3>U15</h3>
+                    <ul>
+                        <li>Division 1 Premiers</li>
+                    </ul>
+                </div>
+                
+                <div class="age-group">
+                    <h3>U13</h3>
+                    <ul>
+                        <li>Division 1 Premiers</li>
+                        <li>Division 1 District Runners Up</li>
+                        <li>Kellyvill Kolts Summer League- Runners up</li>
+                    </ul>
+                </div>
+                
+                <div class="age-group">
+                    <h3>U12</h3>
+                    <ul>
+                        <li>Best and Fairest</li>
+                    </ul>
+                </div>
+                
+                <div class="age-group">
+                    <h3>U11</h3>
+                    <ul>
+                        <li>Best and Fairest</li>
+                    </ul>
+                </div>
+                
+                <div class="age-group">
+                    <h3>U10</h3>
+                    <ul>
+                        <li>Best and Fairest</li>
+                    </ul>
+                </div>
+                
+                <div class="age-group">
+                    <h3>U09</h3>
+                    <ul>
+                        <li>Most Improved</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills & Projects Page -->
+        <div id="skills-page" class="page hidden">
+            <div class="container">
+                <h1 class="section-title">Skills & Projects</h1>
+                
+                <div class="achievement-card skills-section">
+                    <h2>Creator of Wellness and Breathing App: Breathe Sync</h2>
+                    <p>I created Breathe Sync, a breathing timer application designed to help users improve their well-being through guided breathing exercises. The app was developed using Swift programming language and Xcode development environment, allowing me to create an intuitive and responsive user interface.</p>
+                    <p>After rigorous testing and refinement, I successfully launched Breathe Sync on the Apple App Store, making it accessible to users worldwide. This project showcases my ability to take an idea from conception to completion, utilizing my programming skills to create a practical solution for wellness and mindfulness.</p>
+                </div>
+                
+                <div class="achievement-card skills-section">
+                    <h2>Skills</h2>
+                    
+                    <h3>Languages</h3>
+                    <ul>
+                        <li>English (Fluent)</li>
+                        <li>Hindi (Fluent)</li>
+                    </ul>
+                    
+                    <h3>Programming Languages</h3>
+                    <ul>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>Swift</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Made by Agastya Dubey, All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Page navigation system
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and pages
+                    navLinks.forEach(l => l.classList.remove('active-link'));
+                    pages.forEach(p => p.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active-link');
+                    
+                    // Show the corresponding page
+                    const pageId = this.getAttribute('data-page') + '-page';
+                    document.getElementById(pageId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
